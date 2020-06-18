@@ -3,8 +3,16 @@ module MealyPattern(
 	input        i,
 	output [1:0] o
 );
-
-// TODO Implementierung
+	reg [2:0] q = 3'b000;
+	always @(posedge clock)
+		begin
+			q = q << 1;
+			q[0] = i;
+			if((q == 3'b111) | (q == 3'b001))
+				o = 2'b10;
+			else
+				o = 2'b00;
+		end
 
 endmodule
 
