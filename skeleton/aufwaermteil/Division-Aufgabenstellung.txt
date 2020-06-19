@@ -1,0 +1,39 @@
+Nun überlegen Sie sich das zugehörige Schaltwerk.
+Implementieren Sie Ihr erstelltes Schaltwerk als Verilog-Modul Division und überprüfen Sie Ihr Design mithilfe Testbenches.
+
+
+Das Divisionsschaltwerk hat
+zwei 32-Bit Eingaben A und B,
+einen 1-Bit Eingang start,
+einen Eingang clock und
+zwei 32-Bit Ausgaben Q(uotient) und R(est)
+
+32 Takte nachdem an einer steigenden Taktflanke start = 1 war, soll
+Q der Quotient und
+R der Rest der Division A/B
+sein.
+
+Wird während der Berechnung einer Division nochmals start = 1,
+so bricht das Werk die aktuelle Berechnung ab und beginnt mit den neuen aktuellen Operanden von vorne.
+
+/////////////////////////
+
+
+Der Schaltkreis des Werkes soll pro Zyklus zwischen zwei aufeinander folgenden steigenden Taktflanken jeweils eine Iteration der Schleife ausführen,
+d.h. im Wesentlichen eine Subtraktion und einen Negativtest.
+
+Versuchen Sie die Multiplikation durch günstigere Verschiebungen auszudrücken.
+
+
+Verwenden Sie als Zustand des Werks drei 32-Bit breite Register:
+Das erste Register speichert den aktuellen Wert des Rests R.
+Das zweite Register speichert den aktuellen Wert des Divisors B.
+Das dritte Register speichert die noch benötigten Bits des Dividenden A und die bereits berechneten Bits des Quotienten Q.
+Das dritte Register hat also stets vor Iteration i den Zustand {Q[N − 1 : i + 1], A[i : 0]}.
+
+
+Ist an einer steigenden Taktflanke von clock das Startsignal gesetzt (start = 1), so übernehmen wir die Eingaben A und B in die jeweiligen Register und beginnen mit der Berechnung.
+
+Eine Berechnung dauert exakt 32 Takte: danach liegt das korrekte Ergebnis solange an den Ausgängen an, bis eine erneute Division startet.
+
+Um zu erreichen, dass nicht in jedem Takt eine Iteration ausgeführt wird, sondern nur in den ersten 32 Takten nach dem start, kann es nützlich sein einen Zähler zu verwenden.
