@@ -16,13 +16,45 @@ module MealyPattern(
 
 endmodule
 
+
+
 module MealyPatternTestbench();
 
-	// TODO Input Stimuli
+    reg clk, in, tmp;
+    
+    initial
+    begin
+        $dumpfile("MealyMaschine.vcd");
+        $dumpvars;
+        
+        assign in = 10'b1110011001
+        
+        // part of in is written into tmp for easier validation
+        // and update in accordingly
+        tmp <= in [9:7];
+        in <= in << 3;
+        
+        
+        // check if output was as expected
+        if (((tmp == 3'b111) | (tmp == 3'b001)) & (out == 2'b01))
+            $display ("CORRECT: input was %h and output was %h", tmp, out);
+        else
+            $display ("WRONG: input was %h and output was %h", tmp, out);
+        
+        $finish;
+    end
+    
+    
+    // input tmp for machine
+    wire [1:0] out;
+    MealyPattern machine(.clock(clk), .i(tmp), .o(out));
+        
 
-	MealyPattern machine(.clock(XXX), .i(XXX), .o(XXX));
-
-	// TODO Überprüfe Ausgaben
+    // create clock
+    always
+    begin
+        clk <= 1'b1; #1; clk <= 1'b0; #1;
+    end
 
 endmodule
 
