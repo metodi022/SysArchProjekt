@@ -3,16 +3,25 @@ module MealyPattern(
     input        i,
     output [1:0] o
 );
+
     reg [2:0] q = 3'b000;
     reg [1:0] out = 2'b00;
+    
     always @(posedge clock)
+    
         begin
+        
             q = q << 1;
             q[0] = i;
-            if((q == 3'b111) | (q == 3'b001))
+            
+            if(q == 3'b001)
                 out <= 2'b10;
             else
+              if(q == 3'b111)
+                out <= 2'b01;
+              else
                 out <= 2'b00;
+            
         end
     
     assign o = out;
