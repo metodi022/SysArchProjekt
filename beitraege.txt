@@ -1,0 +1,7 @@
+2578558 [Metodi]:
+- Implementierung von MealyPattern
+
+2578706 [Johannes]:
+
+
+ ...	[Angelika]:
