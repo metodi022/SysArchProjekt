@@ -8,10 +8,10 @@ module Division(
 );
     
     reg count;
-    reg [31:0] currentR;        // first register
-    reg [31:0] currentB;        // second register
+    reg [31:0] currentR;        // first register; speichert den aktuellen Wert des Rests R
+    reg [31:0] currentB;        // second register; speichert den aktuellen Wert des Divisors B
     reg [31:0] doneRemaining    // speichert noch benötigte Bits v. Dividend A und bereits berechnete
-                                // Bits v. Quotient Q  =>  {Q[N − 1 : i + 1], A[i : 0]} vor jeder Iteration
+                                // Bits v. Quotient Q  =>  {Q[31 : i + 1], A[i : 0]} vor jeder Iteration
     
     always @(posedge clock)
     begin
@@ -26,24 +26,24 @@ module Division(
         
         if (count != 32)
         begin
+            for (i = 31; i > 0; i --)
+            begin
             
-            // TODO Implementierung
-            /*  R = 0
-                for i = N-1 to 0
-                    R’ = 2 * R + A[i]
-                    if (R’ < B) then Q[i] = 0, R = R’
-                    else Q[i] = 1, R = R’-B
-            */
+            /* assign currentR = 2 * r + A[i]; */
             
+            if (currentR < currentB)
+            begin
+                /* Q[i] = 0; */
+                r = currentR;
+            end
+            else
+            begin
+                /* Q[i] = 1; */
+                assign r = currentR - currentB;
+                
+            end
         end
            
-           
-	
-	
-	
-	
-	
-	
 	
 	always
 	begin
@@ -52,4 +52,31 @@ module Division(
 	
 	
 endmodule
+
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+
+
+module IndexAccess (
+    input [31:0] in,
+    input [31:0] k,
+    input clock,
+    output reg out
+);
+
+reg [31:0] tmp;
+assign tmp = k;
+reg [0:0] this;
+assign this = tmp;
+
+always @(posedge clock)
+begin
+    if (this == 1'b1)
+        assign out = tmp;
+    else
+        assign tmp = tmp << 1;
+end
+
+endmodule
+
 
