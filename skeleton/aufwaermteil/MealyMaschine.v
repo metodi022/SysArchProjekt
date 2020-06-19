@@ -23,7 +23,7 @@ endmodule
 module MealyPatternTestbench();
     
     //10b'1110011001
-    reg clk, in;
+    reg clkTest, inTest;
     
     
     initial
@@ -31,39 +31,59 @@ module MealyPatternTestbench();
         $dumpfile("MealyPattern.vcd");
         $dumpvars;
     
-        in <= 1'b1;
-        #1;
-        in <= 1'b1;
-        #1;
-        in <= 1'b1;
-        #1;
-        in <= 1'b0;
-        #1;
-        in <= 1'b0;
-        #1;
-        in <= 1'b1;
-        #1;
-        in <= 1'b1;
-        #1;
-        in <= 1'b0;
-        #1;
-        in <= 1'b0;
-        #1;
-        in <= 1'b1;
-        #1;
+        inTest <= 1'b1; #1;
+        $display("inTest==%h", inTest);
+        if (outTest == 1) $display ("CORRECT outputTest");
+        
+        inTest <= 1'b1; #1;
+        $display("inTest==%h", inTest);
+        if (outTest == 1) $display ("WRONG outputTest");
+
+        inTest <= 1'b1; #1;
+        $display("inTest==%h", inTest);
+        if (outTest == 1) $display ("CORRECT outputTest");
+            
+        inTest <= 1'b0; #1;
+        $display("inTest==%h", inTest);
+        if (outTest == 1) $display ("WRONG outputTest");
+
+        inTest <= 1'b0; #1;
+        $display("inTest==%h", inTest);
+        if (outTest == 1) $display ("WRONG outputTest");
+
+        inTest <= 1'b1; #1;
+        $display("inTest==%h", inTest);
+        if (outTest == 1) $display ("CORRECT outputTest");
+
+        inTest <= 1'b1; #1;
+        $display("inTest==%h", inTest);
+        if (outTest == 1) $display ("WRONG outputTest");
+
+        inTest <= 1'b0; #1;
+        $display("inTest==%h", inTest);
+        if (outTest == 1) $display ("WRONG outputTest");
+        
+        inTest <= 1'b0; #1;
+        $display("inTest==%h", inTest);
+        if (outTest == 1) $display ("WRONG outputTest");
+
+        inTest <= 1'b1; #1;
+        $display("inTest==%h", inTest);
+        if (outTest == 1) $display ("CORRECT outputTest");
+
         
         $finish;
     end
     
     
-    wire [1:0] out;
-    MealyPattern machine(.clock(clk), .i(in), .o(out));
+    wire [1:0] outTest;
+    MealyPattern machine(.clock(clkTest), .i(inTest), .o(outTest));
     
     
     
     always
     begin
-        clk <= 1'b0; #1; clk <= 1'b1; #1;
+        clkTest <= 1'b0; #1; clkTest <= 1'b1; #1;
     end
 
 endmodule
