@@ -2,6 +2,7 @@
 - Implementierung von MealyPattern
 
 2578706 [Johannes]:
+- 2020-06-19: Implementierung von MealyTestBench
+- 2020-06-19: halbherzige Implementierung von Division und IndexAccess in DivisionSchaltwerk.v
 
-
- ...	[Angelika]:
+2577568 [Angelika]:
