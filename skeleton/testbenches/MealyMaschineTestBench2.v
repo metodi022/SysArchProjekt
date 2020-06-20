@@ -19,8 +19,6 @@ begin
 $dumpfile("TestMealy.vcd");
 $dumpvars;
 
-val_a = 10'b1110011001;
-
 val_a <= 1'b1; #1;
 if (result == 2'b10) $display ("Correct");
 

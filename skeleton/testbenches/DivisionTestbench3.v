@@ -5,7 +5,7 @@ wire [31:0] result;
 wire [31:0] result_r;
 
 // instantiate device under test
-Division divide(.clock(clk),.start(s),.a(32'd7),.b(32'd3),.q(result),.r(result_r));
+Division divide(.clock(clk),.start(s),.a(32'd9),.b(32'd5),.q(result),.r(result_r));
 
 // generate clock
 always
@@ -26,7 +26,7 @@ s <= 1'b0; #160;
 s <= 1'b0; #50; 
 
 #120;
-if (result == 32'd2 && result_r == 32'd1)
+if (result == 32'd1 && result_r == 32'd4)
 $display("Division successful");
 else
 $display("Division failed");

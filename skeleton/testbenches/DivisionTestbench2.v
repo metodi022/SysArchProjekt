@@ -5,12 +5,12 @@ wire [31:0] result;
 wire [31:0] result_r;
 
 // instantiate device under test
-Division divide(.clock(clk),.start(s),.a(32'd7),.b(32'd3),.q(result),.r(result_r));
+Division divide(.clock(clk),.start(s),.a(32'd9),.b(32'd3),.q(result),.r(result_r));
 
 // generate clock
 always
 begin
-clk <= 1'b1; #2; clk <= 1'b0; #2;
+clk <= 1'b1; #1; clk <= 1'b0; #1;
 end
 
 // assign value and test it
@@ -20,15 +20,17 @@ begin
 $dumpfile("sim_division.vcd");
 $dumpvars;
 
-s <= 1'b1; #5;
-s <= 1'b1; #50;
-s <= 1'b1; #70;
-s <= 1'b1; #100;
-s <= 1'b1; #200; 
-s <= 1'b0; #50;
+s <= 1'b0; #1; 
+s <= 1'b1; #2; 
+s <= 1'b1; #2;
+s <= 1'b1; #2;
+s <= 1'b0; #2;
+s <= 1'b1; #2;
+s <= 1'b1; #2;
+s <= 1'b0; #2; 
 
-#120;
-if (result == 32'd2 && result_r == 32'd1)
+#100;
+if (result == 32'd3 && result_r == 32'd0)
 $display("Division successful");
 else
 $display("Division failed");

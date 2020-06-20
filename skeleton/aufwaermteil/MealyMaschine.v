@@ -42,44 +42,73 @@ module MealyPatternTestbench();
         
         inTest <= 1'b1; #1;
         $display("inTest==%h", inTest);
-        if (outTest == 2'b10) $display ("CORRECT outputTest");
+        if (outTest == 2'b10)
+			$display ("CORRECT outputTest");
+		else
+			$display ("WRONG outputTest");
         
         inTest <= 1'b1; #2;
         $display("inTest==%h", inTest);
-        if (outTest == 2'b10) $display ("WRONG outputTest");
+        if (outTest != 2'b00)
+			$display ("WRONG outputTest");
+		else
+			$display ("CORRECT outputTest");
 
         inTest <= 1'b1; #2;
         $display("inTest==%h", inTest);
-        if (outTest == 2'b10) $display ("CORRECT outputTest");
+        if (outTest == 2'b01)
+			$display ("CORRECT outputTest");
+		else
+			$display ("WRONG outputTest");
             
         inTest <= 1'b0; #2;
         $display("inTest==%h", inTest);
-        if (outTest == 2'b10) $display ("WRONG outputTest");
+        if (outTest != 2'b00)
+			$display ("WRONG outputTest");
+		else
+			$display ("CORRECT outputTest");
 
         inTest <= 1'b0; #2;
         $display("inTest==%h", inTest);
-        if (outTest == 2'b10) $display ("WRONG outputTest");
+        if (outTest != 2'b00)
+			$display ("WRONG outputTest");
+		else
+			$display ("CORRECT outputTest");
 
         inTest <= 1'b1; #2;
         $display("inTest==%h", inTest);
-        if (outTest == 2'b10) $display ("CORRECT outputTest");
+        if (outTest == 2'b10)
+			$display ("CORRECT outputTest");
+		else
+			$display ("WRONG outputTest");
 
         inTest <= 1'b1; #2;
         $display("inTest==%h", inTest);
-        if (outTest == 2'b10) $display ("WRONG outputTest");
+        if (outTest != 2'b00)
+			$display ("WRONG outputTest");
+		else
+			$display ("CORRECT outputTest");
 
         inTest <= 1'b0; #2;
         $display("inTest==%h", inTest);
-        if (outTest == 2'b10) $display ("WRONG outputTest");
+        if (outTest != 2'b00)
+			$display ("WRONG outputTest");
+		else
+			$display ("CORRECT outputTest");
         
         inTest <= 1'b0; #2;
         $display("inTest==%h", inTest);
-        if (outTest == 2'b10) $display ("WRONG outputTest");
+        if (outTest != 2'b00)
+			$display ("WRONG outputTest");
+		else
+			$display ("CORRECT outputTest");
 
         inTest <= 1'b1; #2;
         $display("inTest==%h", inTest);
-        if (outTest == 2'b10) $display ("CORRECT outputTest");
-
+        if (outTest == 2'b10)
+			$display ("CORRECT outputTest");
+		else
+			$display ("WRONG outputTest");
         
         $finish;
     end
@@ -87,8 +116,6 @@ module MealyPatternTestbench();
     
     wire [1:0] outTest;
     MealyPattern machine(.clock(clkTest), .i(inTest), .o(outTest));
-    
-    
     
     always
     begin
