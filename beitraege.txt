@@ -8,3 +8,4 @@
 - 2020-06-19: Implementierung von Division Module
 
 2577568 [Angelika]:
+- 2020-06-19: Imlementierung MealyTestBench2
