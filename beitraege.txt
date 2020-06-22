@@ -1,7 +1,7 @@
 2578558 [Metodi]:
 - 2020-06-19: Implementierung von MealyPattern
 - 2020-06-19: Implementierung von Division Module
-- 2020-06-20: Implementierung von mehere Testbenches zu Division Module
+- 2020-06-20: Implementierung von mehrere Testbenches zu Division Module
 
 2578706 [Johannes]:
 - 2020-06-19: Implementierung von MealyTestBench
@@ -10,4 +10,5 @@
 
 2577568 [Angelika]:
 - 2020-06-19: Imlementierung MealyTestBench2
-- 2020-06-20: Implementierung Division Testbenches
+- 2020-06-20: Implementierung mehrere Division Module Testbenches
+- 2020-06-21: Implementierung ALU
