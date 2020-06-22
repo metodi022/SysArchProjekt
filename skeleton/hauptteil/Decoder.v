@@ -80,6 +80,28 @@ module Decoder(
 					dojump = 1;
 					alucontrol = 3'b010;// TODO
 				end
+			6'b001111: // LUI
+				begin
+					regwrite = 1;											// Yes
+					destreg = instr[20:16];									// Destination reg rt[20:16]
+					alusrcbimm = 1; 										// Yes, immediate[15:0] extended
+					dobranch = 0;  											// No branch
+					memwrite = 0;   										// No memory write
+					memtoreg = 0;  											// No memory to reg
+					dojump = 0;     										// No jump
+					alucontrol = 3'b011;									// ALU slt => ALUCode = 011
+				end
+			6'b001101: // ORI
+				begin
+					regwrite = 1;											// Yes
+					destreg = instr[20:16];									// Destination reg rt[20:16]
+					alusrcbimm = 1; 										// Yes, immediate[15:0] extended
+					dobranch = 0;  											// No branch
+					memwrite = 0;   										// No memory write
+					memtoreg = 0;  											// No memory to reg
+					dojump = 0;     										// No jump
+					alucontrol = 3'b110;									// ALU or
+				end
 			default: // Default Fall
 				begin
 					regwrite = 1'bx;

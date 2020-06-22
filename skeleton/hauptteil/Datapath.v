@@ -132,7 +132,8 @@ module ArithmeticLogicUnit(
         
         3'b101:
           ALU_result = a + b;
-        
+        3'b011:
+		  ALU_result = b << 16;				// SLT: [15:0] -> [31:0]
         3'b110:
           ALU_result = a | b;
         

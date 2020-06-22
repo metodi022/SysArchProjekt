@@ -22,12 +22,12 @@ module ProcessorTestbench();
 			end
 
 			// Lese auszuführendes Programm ein
-			$readmemh("TestProgramme/Fibonacci.dat", proc.imem.INSTRROM, 0, 5); //Benötigt: Aufgabe 1.3
-			$readmemh("TestProgramme/Fibonacci.expected", expectedRegContent);
+//			$readmemh("TestProgramme/Fibonacci.dat", proc.imem.INSTRROM, 0, 5); //Benötigt: Aufgabe 1.3
+//			$readmemh("TestProgramme/Fibonacci.expected", expectedRegContent);
 //			$readmemh("TestProgramme/Funktionsaufruf.dat", proc.imem.INSTRROM, 0, 4); //Benötigt: Aufgabe 1.7
 //			$readmemh("TestProgramme/Funktionsaufruf.expected", expectedRegContent);
-//			$readmemh("TestProgramme/Konstanten.dat", proc.imem.INSTRROM, 0, 2); //Benötigt: Aufgabe 1.4
-//			$readmemh("TestProgramme/Konstanten.expected", expectedRegContent);
+			$readmemh("TestProgramme/Konstanten.dat", proc.imem.INSTRROM, 0, 2); //Benötigt: Aufgabe 1.4
+			$readmemh("TestProgramme/Konstanten.expected", expectedRegContent);
 //			$readmemh("TestProgramme/Multiplikation.dat", proc.imem.INSTRROM, 0, 4); //Benötigt: Aufgabe 1.6
 //			$readmemh("TestProgramme/Multiplikation.expected", expectedRegContent);
 
