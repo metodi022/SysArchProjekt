@@ -10,6 +10,8 @@
 - 2020-06-19: Implementierung von MealyTestBench
 - 2020-06-19: halbherzige Implementierung von Division
 - 2020-06-19: Implementierung von Division Module
+- 2020-06-22: Implementierung von ArithmeticLogicModul.v und Realisieren, dass die ALU bereits in Datapath.v fertig war
+- 2020-06-22: Versuch, BLTZ zu implementieren (in getrenntem Ordner, um Push-Konflikte zu vermeiden)
 
 2577568 [Angelika]:
 - 2020-06-19: Imlementierung MealyTestBench2
