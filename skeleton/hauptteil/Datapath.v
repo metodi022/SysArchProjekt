@@ -116,29 +116,34 @@ module ArithmeticLogicUnit(
 	output        zero
 );
 
+  reg [31:0] ALU_result;
+  reg ALU_zero;
+  assign result = ALU_result;
+  assign zero = ALU_zero;
+  
 	always @(a or b or alucontrol)
     begin
       case (alucontrol)
         3'b000:
-          result = = (a < b ? 1 : 0);
+          ALU_result = (a < b ? 1 : 0);
         
         3'b001:
-          result = a - b;
+          ALU_result = a - b;
         
         3'b101:
-          result = a + b;
+          ALU_result = a + b;
         
         3'b110:
-          result = a | b;
+          ALU_result = a | b;
         
         3'b111:
-          result = a & b;
+          ALU_result = a & b;
       endcase
       
-      if (result == 0)
-      zero = 1;
+      if (ALU_result == 0)
+      ALU_zero = 1;
       else
-      zero = 0;
+      ALU_zero = 0;
       
     end
 

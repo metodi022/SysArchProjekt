@@ -1,5 +1,7 @@
 module AluTestBench(); // Alu Test Bench #3
 
+reg clk;
+
 always // Clock with #1 tick
 begin
 	clk <= 1'b1; #1; clk <= 1'b0; #1;
