@@ -121,7 +121,7 @@ module ArithmeticLogicUnit(
   assign result = ALU_result;
   assign zero = ALU_zero;
   
-	always @(a or b or alucontrol)
+	always @*
     begin
       case (alucontrol)
         3'b000:
