@@ -115,7 +115,7 @@ module ArithmeticLogicUnit(
 	output [31:0] result,
 	output        zero
 );
-
+    
   reg [31:0] ALU_result;
   reg ALU_zero;
   assign result = ALU_result;
@@ -131,8 +131,7 @@ module ArithmeticLogicUnit(
           ALU_result = a - b;
           
         3'b010:     // BLTZ Branch on less than zero
-          ALU_result = (a < 0 ? b << 2 : b+4);
-        
+          ALU_result = (a >= 0 ? 1 : 0);
         3'b101:
           ALU_result = a + b;
         3'b011:

@@ -39,11 +39,11 @@ module Decoder(
                 begin
                     regwrite = 0;                   // no
                     destreg = 5'bx;                 // Destination reg not fixed
-                    alusrcbimm = 0;                 // FIXME unsure
+                    alusrcbimm = 0;                 // 0
                     dobranch = 1;                   // yes
                     memwrite = 0;                   // No memory write
-                    memtoreg = 0;                   // No memory to reg
-                    dojump =  1;                    // no
+                    memtoreg = 1'bx;                   // No memory to reg
+                    dojump =  0;                    // no
                     alucontrol = 3'b010;            //
                 end
 			6'b100011, // Lade Datenwort aus Speicher
