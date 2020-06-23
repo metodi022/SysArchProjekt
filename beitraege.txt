@@ -16,4 +16,5 @@
 2577568 [Angelika]:
 - 2020-06-19: Imlementierung MealyTestBench2
 - 2020-06-20: Implementierung mehrere Division Module Testbenches
-- 2020-06-21: Implementierung ALU
+- 2020-06-21: Implementierung ALU und Korrektur ALU Testbenches
+- 2020-06-23: Implementierung Testprogramme Konstanten laden
