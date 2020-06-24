@@ -5,7 +5,7 @@
 - 2020-06-22: Implementierung von Testbenches zu ALU
 - 2020-06-22: Habe die richtige ALU control codes in Decoder hinzugefuegt
 - 2020-06-22: Implementierung von Konstanten laden (Decoder und Datapath - erweiterung ALU)
-- 2020-06-24: Testprogramme fuer Konstanted laden
+- 2020-06-24: Testprogramme fuer Konstanten laden
 
 2578706 [Johannes]:
 - 2020-06-19: Implementierung von MealyTestBench
@@ -19,3 +19,5 @@
 - 2020-06-20: Implementierung mehrere Division Module Testbenches
 - 2020-06-21: Implementierung ALU und Korrektur ALU Testbenches
 - 2020-06-23: Implementierung Testprogramme Konstanten laden
+- 2020-06-24: Implementierung Tests zu Verzweigungen
+- 2020-06-25: Implementierung Multiplikation
