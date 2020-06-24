@@ -40,7 +40,7 @@ module Decoder(
                     regwrite = 0;                   // no
                     destreg = 5'bx;                 // Destination reg not fixed
                     alusrcbimm = 0;                 // 0
-                    dobranch = 1;                   // yes
+                    dobranch = zero;                   // depends on zero
                     memwrite = 0;                   // No memory write
                     memtoreg = 1'bx;                   // No memory to reg
                     dojump =  0;                    // no

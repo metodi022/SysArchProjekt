@@ -125,17 +125,17 @@ module ArithmeticLogicUnit(
     begin
       case (alucontrol)
         3'b000:
-          ALU_result = (a < b ? 1 : 0);
+          ALU_result = ($signed(a) < $signed(b) ? 1 : 0);
         
         3'b001:
-          ALU_result = a - b;
+          ALU_result = $signed(a) - $signed(b);
           
         3'b010:     // BLTZ Branch on less than zero
-          ALU_result = (a >= 0 ? 1 : 0);
+          ALU_result = ($signed(a) >= $signed(b) ? 1 : 0);
         3'b101:
-          ALU_result = a + b;
+          ALU_result = $signed(a) + $signed(b);
         3'b011:
-		  ALU_result = b << 16;				// SLT: [15:0] -> [31:0]
+		  ALU_result = b << 16;				// shift left: [15:0] -> [31:0]
         3'b110:
           ALU_result = a | b;
         
@@ -144,9 +144,9 @@ module ArithmeticLogicUnit(
       endcase
       
       if (ALU_result == 0)
-      ALU_zero = 1;
+		ALU_zero <= 1;
       else
-      ALU_zero = 0;
+		ALU_zero <= 0;
       
     end
 

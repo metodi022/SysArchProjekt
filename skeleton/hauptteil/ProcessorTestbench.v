@@ -40,6 +40,10 @@ module ProcessorTestbench();
 //			$readmemh("TestProgramme/Konstanten4.expected", expectedRegContent);
 //			$readmemh("TestProgramme/Konstanten5.dat", proc.imem.INSTRROM, 0, 2); //Benötigt: Aufgabe 1.4
 //			$readmemh("TestProgramme/Konstanten5.expected", expectedRegContent);
+//			$readmemh("TestProgramme/BLTZ.dat", proc.imem.INSTRROM, 0, 3); //Benötigt: Aufgabe 1.5
+//			$readmemh("TestProgramme/BLTZ.expected", expectedRegContent);
+//			$readmemh("TestProgramme/BLTZ2.dat", proc.imem.INSTRROM, 0, 4); //Benötigt: Aufgabe 1.5
+//			$readmemh("TestProgramme/BLTZ2.expected", expectedRegContent);
 
 			// Generiere reset-Eingabe
 			reset <= 1;
