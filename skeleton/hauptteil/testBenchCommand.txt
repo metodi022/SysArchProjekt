@@ -1,0 +1,1 @@
+iverilog -s ProcessorTestbench -o Test Processor.v ProcessorTestbench.v Core.v Memory.v Datapath.v Decoder.v

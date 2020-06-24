@@ -26,10 +26,20 @@ module ProcessorTestbench();
 //			$readmemh("TestProgramme/Fibonacci.expected", expectedRegContent);
 //			$readmemh("TestProgramme/Funktionsaufruf.dat", proc.imem.INSTRROM, 0, 4); //Benötigt: Aufgabe 1.7
 //			$readmemh("TestProgramme/Funktionsaufruf.expected", expectedRegContent);
-			$readmemh("TestProgramme/Konstanten.dat", proc.imem.INSTRROM, 0, 2); //Benötigt: Aufgabe 1.4
-			$readmemh("TestProgramme/Konstanten.expected", expectedRegContent);
+//			$readmemh("TestProgramme/Konstanten.dat", proc.imem.INSTRROM, 0, 2); //Benötigt: Aufgabe 1.4
+//			$readmemh("TestProgramme/Konstanten.expected", expectedRegContent);
 //			$readmemh("TestProgramme/Multiplikation.dat", proc.imem.INSTRROM, 0, 4); //Benötigt: Aufgabe 1.6
 //			$readmemh("TestProgramme/Multiplikation.expected", expectedRegContent);
+
+			// Unsere TestPorgramme
+//			$readmemh("TestProgramme/Konstanten2.dat", proc.imem.INSTRROM, 0, 3); //Benötigt: Aufgabe 1.4
+//			$readmemh("TestProgramme/Konstanten2.expected", expectedRegContent);			
+//			$readmemh("TestProgramme/Konstanten3.dat", proc.imem.INSTRROM, 0, 4); //Benötigt: Aufgabe 1.4
+//			$readmemh("TestProgramme/Konstanten3.expected", expectedRegContent);
+//			$readmemh("TestProgramme/Konstanten4.dat", proc.imem.INSTRROM, 0, 2); //Benötigt: Aufgabe 1.4
+//			$readmemh("TestProgramme/Konstanten4.expected", expectedRegContent);
+//			$readmemh("TestProgramme/Konstanten5.dat", proc.imem.INSTRROM, 0, 2); //Benötigt: Aufgabe 1.4
+//			$readmemh("TestProgramme/Konstanten5.expected", expectedRegContent);
 
 			// Generiere reset-Eingabe
 			reset <= 1;
