@@ -35,6 +35,17 @@ module Decoder(
 						default:   alucontrol = 3'b010;// TODO // undefiniert
 					endcase
 				end
+            6'b000001: // BLTZ Branch on less than zero
+                begin
+                    regwrite = 0;                   // no
+                    destreg = 5'bx;                 // Destination reg not fixed
+                    alusrcbimm = 0;                 // 0
+                    dobranch = 1;                   // yes
+                    memwrite = 0;                   // No memory write
+                    memtoreg = 1'bx;                   // No memory to reg
+                    dojump =  0;                    // no
+                    alucontrol = 3'b010;            //
+                end
 			6'b100011, // Lade Datenwort aus Speicher
 			6'b101011: // Speichere Datenwort
 				begin
