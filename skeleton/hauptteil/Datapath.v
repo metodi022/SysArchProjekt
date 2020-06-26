@@ -125,15 +125,15 @@ module ArithmeticLogicUnit(
     begin
       case (alucontrol)
         3'b000:
-          ALU_result = ($signed(a) < $signed(b) ? 1 : 0);
+          ALU_result = (a < b ? 1 : 0);		// SLTU
         
         3'b001:
-          ALU_result = $signed(a) - $signed(b);
+          ALU_result = a - b;				// SUBU
           
         3'b010:     // BLTZ Branch on less than zero
           ALU_result = ($signed(a) >= $signed(b) ? 1 : 0);
         3'b101:
-          ALU_result = $signed(a) + $signed(b);
+          ALU_result = a + b;				// ADDU
         3'b011:
 		  ALU_result = b << 16;				// shift left: [15:0] -> [31:0]
         3'b110:
