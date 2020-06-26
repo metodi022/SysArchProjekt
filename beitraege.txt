@@ -7,6 +7,7 @@
 - 2020-06-22: Implementierung von Konstanten laden (Decoder und Datapath - erweiterung ALU)
 - 2020-06-24: Testprogramme fuer Konstanten laden
 - 2020-06-24: Testprogramme fuer BLTZ
+- 2020-06-26: Start von Implementierung von Multiplikation: ALU control MULTU, decoder MULTU, reg HI, LO, writeback LO fuer MULTU
 
 2578706 [Johannes]:
 - 2020-06-19: Implementierung von MealyTestBench
