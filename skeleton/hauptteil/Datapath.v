@@ -36,7 +36,7 @@ module Datapath(
 
 	// Write-Back: Stelle Operanden bereit und schreibe das jeweilige Resultat zurück
 	RegisterFile gpr(clk, regwrite, instr[25:21], instr[20:16],
-				   destreg, result, srca, srcb);
+				   destreg, result, instr[5:0], srca, srcb);
 endmodule
 
 module ProgramCounter(
@@ -80,15 +80,21 @@ module RegisterFile(
 	input         we3,
 	input  [4:0]  ra1, ra2, wa3,
 	input  [31:0] wd3,
+	input  [5:0] funct,
 	output [31:0] rd1, rd2
 );
 	reg [31:0] registers[31:0];
+	reg [31:0] hi;
+	reg [31:0] lo;
 
 	always @(posedge clk)
 		if (we3) begin
-			registers[wa3] <= wd3;
+			case(funct)
+				6'b011001: lo <= wd3;
+				default: registers[wa3] <= wd3;
+			endcase
 		end
-
+	
 	assign rd1 = (ra1 != 0) ? registers[ra1] : 0;
 	assign rd2 = (ra2 != 0) ? registers[ra2] : 0;
 endmodule
@@ -141,6 +147,8 @@ module ArithmeticLogicUnit(
         
         3'b111:
           ALU_result = a & b;
+		3'b100:
+		  ALU_result = a * b;				// MULTU
       endcase
       
       if (ALU_result == 0)

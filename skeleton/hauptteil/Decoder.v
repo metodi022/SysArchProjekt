@@ -32,7 +32,8 @@ module Decoder(
 						6'b100100: alucontrol = 3'b111;// TODO // and
 						6'b100101: alucontrol = 3'b110;// TODO // or
 						6'b101011: alucontrol = 3'b000;// TODO // set-less-than unsigned
-						default:   alucontrol = 3'b010;// TODO // undefiniert
+						6'b011001: alucontrol = 3'b100;// 		  MULTU
+						default:   alucontrol = 3'b010;// TODO // BGTZ
 					endcase
 				end
             6'b000001: // BLTZ Branch on less than zero
