@@ -114,6 +114,29 @@ module Decoder(
 					dojump = 0;     										// No jump
 					alucontrol = 3'b110;									// ALU or
 				end
+			6'b010010: // mflo
+				begin
+				regwrite = 1;
+				destreg = instr[20:16];
+				alusrcbimm = 0;
+				dobranch = 0;
+				memwrite = 0;
+				memtoreg = 0;
+				dojump = 0;
+				alucontrol = 3'b100;
+				end
+				
+			6'b010000: // mfhi
+				begin 
+				regwrite = 1;
+				destreg = instr[20:16];
+				alusrcbimm = 0;
+				dobranch = 0;
+				memwrite = 0;
+				memtoreg = 0;
+				dojump = 0;
+				alucontrol = 3'b100;
+				end
 			default: // Default Fall
 				begin
 					regwrite = 1'bx;
