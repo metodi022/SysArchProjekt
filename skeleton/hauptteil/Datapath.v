@@ -95,7 +95,15 @@ module RegisterFile(
 			endcase
 		end
 	
-	assign rd1 = (ra1 != 0) ? registers[ra1] : 0;
+	always @*
+	begin
+	case(funct)
+	6'b010000: rd1 <= hi;
+	6'b010010: rd1 <= lo;
+	default: rd1 <= (ra1 != 0) ? registers[ra1] : 0;
+	endcase
+	end
+	
 	assign rd2 = (ra2 != 0) ? registers[ra2] : 0;
 endmodule
 

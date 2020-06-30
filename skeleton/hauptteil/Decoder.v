@@ -33,6 +33,8 @@ module Decoder(
 						6'b100101: alucontrol = 3'b110;// TODO // or
 						6'b101011: alucontrol = 3'b000;// TODO // set-less-than unsigned
 						6'b011001: alucontrol = 3'b100;// 		  MULTU
+						6'b010000: alucontrol = 3'b101;// Move high;
+						6'b010010: alucontrol = 3'b101;// Move Low;
 						default:   alucontrol = 3'b010;// TODO // BGTZ
 					endcase
 				end
@@ -113,29 +115,6 @@ module Decoder(
 					memtoreg = 0;  											// No memory to reg
 					dojump = 0;     										// No jump
 					alucontrol = 3'b110;									// ALU or
-				end
-			6'b010010: // mflo
-				begin
-				regwrite = 1;
-				destreg = instr[20:16];
-				alusrcbimm = 0;
-				dobranch = 0;
-				memwrite = 0;
-				memtoreg = 0;
-				dojump = 0;
-				alucontrol = 3'b100;
-				end
-				
-			6'b010000: // mfhi
-				begin 
-				regwrite = 1;
-				destreg = instr[20:16];
-				alusrcbimm = 0;
-				dobranch = 0;
-				memwrite = 0;
-				memtoreg = 0;
-				dojump = 0;
-				alucontrol = 3'b100;
 				end
 			default: // Default Fall
 				begin
