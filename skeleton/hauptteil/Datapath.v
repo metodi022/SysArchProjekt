@@ -31,6 +31,7 @@ module Datapath(
 	// (c) Wähle richtiges Ergebnis aus
 	assign result = memtoreg ? readdata : aluout;
 	assign result = (instr[31:26] == 6'b000011) ? pc : result;
+	assign result = (instr[instr[15:11]] == 6'b001000) ? instr[25:21] : result;    //FIXME
 	
 	// Memory: Datenwort das zur (möglichen) Speicherung an den Datenspeicher übertragen wird
 	assign writedata = srcb;
@@ -94,6 +95,7 @@ module RegisterFile(
 			case(funct)
 				6'b011001: lo <= wd3;
 				6'b000011: registers[wa3] <= wd3+4;
+				6'b001000: registers[wa3] <= wd3;
 				default: registers[wa3] <= wd3;
 			endcase
 		end

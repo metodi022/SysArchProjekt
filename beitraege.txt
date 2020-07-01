@@ -17,7 +17,7 @@
 - 2020-06-19: Implementierung von Division Module
 - 2020-06-22: Implementierung von ArithmeticLogicModul.v und Realisieren, dass die ALU bereits in Datapath.v fertig war
 - 2020-06-22: Versuch, BLTZ zu implementieren (in getrenntem Ordner, um Push-Konflikte zu vermeiden)
-- 2020-07-01: Implementierung von JAL
+- 2020-07-01: Implementierung von JAL und JR
 
 
 2577568 [Angelika]:
