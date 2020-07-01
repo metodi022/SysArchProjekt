@@ -17,7 +17,7 @@ module Decoder(
 	always @*
 	begin
 		case (op)
-			6'b000000: // Rtype Instruktion
+			6'b000000: // R-Typ-Instruktion
 				begin
 					regwrite = 1;
 					destreg = instr[15:11];
@@ -43,11 +43,22 @@ module Decoder(
                     regwrite = 0;                   // no
                     destreg = 5'bx;                 // Destination reg not fixed
                     alusrcbimm = 0;                 // 0
-                    dobranch = zero;                   // depends on zero
+                    dobranch = zero;                // depends on zero
                     memwrite = 0;                   // No memory write
-                    memtoreg = 1'bx;                   // No memory to reg
+                    memtoreg = 1'bx;                // No memory to reg
                     dojump =  0;                    // no
                     alucontrol = 3'b010;            //
+                end
+            6'b000011:  // JAL jump and link register
+                begin
+                    regwrite = 1;                   // (store the return address in $31)
+                    destreg = 5'b11111;             // (store the return address in $31)
+                    alusrcbimm = 0;                 // no  (why, actually?)
+                    dobranch = 0;                   // no  (no relative jump)
+                    memwrite = 0;                   // no  (only written to reg $31)
+                    memtoreg = 0;                   // no  (result is PC+4, computed by adder)
+                    dojump = 1;                     // yes (there's an absolute jump)
+                    alucontrol = 3'b101;            // ADDU
                 end
 			6'b100011, // Lade Datenwort aus Speicher
 			6'b101011: // Speichere Datenwort

@@ -30,7 +30,8 @@ module Datapath(
 	ArithmeticLogicUnit alu(srca, srcbimm, alucontrol, aluout, zero);
 	// (c) Wähle richtiges Ergebnis aus
 	assign result = memtoreg ? readdata : aluout;
-
+	assign result = (instr[31:26] == 6'b000011) ? pc : result;
+	
 	// Memory: Datenwort das zur (möglichen) Speicherung an den Datenspeicher übertragen wird
 	assign writedata = srcb;
 
@@ -86,24 +87,27 @@ module RegisterFile(
 	reg [31:0] registers[31:0];
 	reg [31:0] hi;
 	reg [31:0] lo;
+    reg [31:0] aux;
 
 	always @(posedge clk)
 		if (we3) begin
 			case(funct)
 				6'b011001: lo <= wd3;
+				6'b000011: registers[wa3] <= wd3+4;
 				default: registers[wa3] <= wd3;
 			endcase
 		end
-	
+
 	always @*
 	begin
-	case(funct)
-	6'b010000: rd1 <= hi;
-	6'b010010: rd1 <= lo;
-	default: rd1 <= (ra1 != 0) ? registers[ra1] : 0;
-	endcase
+        case(funct)
+            6'b010000: aux <= hi;
+            6'b010010: aux <= lo;
+            default: aux <= (ra1 != 0) ? registers[ra1] : 0;
+        endcase
 	end
 	
+	assign rd1 = aux;
 	assign rd2 = (ra2 != 0) ? registers[ra2] : 0;
 endmodule
 
