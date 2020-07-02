@@ -1,0 +1,5 @@
+lui $1, 0x1234
+jal end
+ori $1, 0x5678
+end:
+ori $1, 0x1111
