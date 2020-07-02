@@ -50,6 +50,10 @@ module ProcessorTestbench();
 //			$readmemh("TestProgramme/BLTZ4.expected", expectedRegContent);
 //			$readmemh("TestProgramme/JAL1.dat", proc.imem.INSTRROM, 0, 3); //Benötigt: Aufgabe 1.7
 //			$readmemh("TestProgramme/JAL1.expected", expectedRegContent);
+//			$readmemh("TestProgramme/JAL2.dat", proc.imem.INSTRROM, 0, 3); //Benötigt: Aufgabe 1.7
+//			$readmemh("TestProgramme/JAL2.expected", expectedRegContent);
+//			$readmemh("TestProgramme/JR1.dat", proc.imem.INSTRROM, 0, 4); //Benötigt: Aufgabe 1.7
+//			$readmemh("TestProgramme/JR1.expected", expectedRegContent);
 // TODO add test path (asm, dat, expected)
 
 			// Generiere reset-Eingabe

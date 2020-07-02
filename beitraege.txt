@@ -9,6 +9,7 @@
 - 2020-06-24: Testprogramme fuer BLTZ
 - 2020-06-26: Start von Implementierung von Multiplikation: ALU control MULTU, decoder MULTU, reg HI, LO, writeback LO fuer MULTU
 - 2020-07-01: Implementierung von JAL
+- 2020-07-02: JAL und JR testbenches
 
 
 2578706 [Johannes]:

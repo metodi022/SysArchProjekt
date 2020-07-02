@@ -18,9 +18,9 @@ module Datapath(
 	wire [31:0] signimm;
 	wire [31:0] srca, srcb, srcbimm;
 	wire [31:0] result;
-
+	
 	// Fetch: Reiche PC an Instruktionsspeicher weiter und update PC
-	ProgramCounter pcenv(clk, reset, dobranch, signimm, jump, instr[25:0], pc);
+	ProgramCounter pcenv(clk, reset, dobranch, signimm, jump, instr[25:0], instr[5:0], aluout, pc);
 
 	// Execute:
 	// (a) Wähle Operanden aus
@@ -29,8 +29,7 @@ module Datapath(
 	// (b) Führe Berechnung in der ALU durch
 	ArithmeticLogicUnit alu(srca, srcbimm, alucontrol, aluout, zero);
 	// (c) Wähle richtiges Ergebnis aus
-	assign result = (instr[31:26] == 6'b000011) ? pc : (memtoreg ? readdata : aluout);
-	//assign result = (instr[instr[15:11]] == 6'b001000) ? instr[25:21] : result;    //FIXME
+	assign result = (instr[31:26] == 6'b000011) ? (pc+4) : (memtoreg ? readdata : aluout);	// JAL
 	
 	// Memory: Datenwort das zur (möglichen) Speicherung an den Datenspeicher übertragen wird
 	assign writedata = srcb;
@@ -47,6 +46,8 @@ module ProgramCounter(
 	input  [31:0] branchoffset,
 	input         dojump,
 	input  [25:0] jumptarget,
+	input  [5:0] funct,
+	input  [31:0] aluout,
 	output [31:0] progcounter
 );
 	reg  [31:0] pc;
@@ -57,7 +58,8 @@ module ProgramCounter(
 	// Berechne mögliches (PC-relatives) Sprungziel
 	Adder pcbranch(.a(incpc), .b({branchoffset[29:0], 2'b00}), .cin(1'b0), .y(branchpc));
 	// Wähle den nächsten Wert des Befehlszählers aus
-	assign nextpc = dojump   ? {incpc[31:28], jumptarget, 2'b00} :
+	assign nextpc = (funct == 6'b001000) ? aluout :											// JR
+					dojump   ? {incpc[31:28], jumptarget, 2'b00} :
 					dobranch ? branchpc :
 							   incpc;
 
@@ -88,13 +90,12 @@ module RegisterFile(
 	reg [31:0] hi;
 	reg [31:0] lo;
     reg [31:0] aux;
+	wire [31:0] test;
 
 	always @(posedge clk)
 		if (we3) begin
 			case(funct)
 				6'b011001: lo <= wd3;
-				6'b000011: registers[wa3] <= wd3+4;
-				6'b001000: registers[wa3] <= wd3;
 				default: registers[wa3] <= wd3;
 			endcase
 		end
@@ -110,6 +111,8 @@ module RegisterFile(
 	
 	assign rd1 = aux;
 	assign rd2 = (ra2 != 0) ? registers[ra2] : 0;
+	
+	assign test = registers[31];
 endmodule
 
 module Adder(
