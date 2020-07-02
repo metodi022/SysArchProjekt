@@ -29,9 +29,8 @@ module Datapath(
 	// (b) Führe Berechnung in der ALU durch
 	ArithmeticLogicUnit alu(srca, srcbimm, alucontrol, aluout, zero);
 	// (c) Wähle richtiges Ergebnis aus
-	assign result = memtoreg ? readdata : aluout;
-	assign result = (instr[31:26] == 6'b000011) ? pc : result;
-	assign result = (instr[instr[15:11]] == 6'b001000) ? instr[25:21] : result;    //FIXME
+	assign result = (instr[31:26] == 6'b000011) ? pc : (memtoreg ? readdata : aluout);
+	//assign result = (instr[instr[15:11]] == 6'b001000) ? instr[25:21] : result;    //FIXME
 	
 	// Memory: Datenwort das zur (möglichen) Speicherung an den Datenspeicher übertragen wird
 	assign writedata = srcb;
