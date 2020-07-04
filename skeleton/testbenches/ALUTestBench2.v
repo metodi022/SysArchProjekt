@@ -11,8 +11,8 @@ end
 reg [31:0] a;
 reg [31:0] b;
 reg [2:0] alucontrol;
-reg [31:0] result;
-reg zero;
+wire [31:0] result;
+wire zero;
 
 ArithmeticLogicUnit alu(.a(a), .b(b), .alucontrol(alucontrol), .result(result), .zero(zero)); // Instantiate module
 
