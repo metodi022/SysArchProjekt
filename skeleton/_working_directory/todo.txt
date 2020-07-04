@@ -1,0 +1,15 @@
+Testbenches for  
+- ALU
+- LUI and ORI
+- Division Module
+
+
+----- DONE -----
+MULTU
+MFHI small numbers
+MFHI big numbers, no overflow
+MFHI big numbers, with overflow
+MFLO small numbers
+MFLO big numbers, no overflow
+MFLO big numbers, with overflow
+
