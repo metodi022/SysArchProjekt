@@ -160,7 +160,7 @@ module ArithmeticLogicUnit(
         3'b111:
           ALU_result = a & b;
 		3'b100:
-		  ALU_result = a * b;				// MULTU
+		  ALU_result = a | b[15:0];			// ORI
       endcase
       
       if (ALU_result == 0)
