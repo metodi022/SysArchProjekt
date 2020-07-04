@@ -87,24 +87,14 @@ module RegisterFile(
 	output [31:0] rd1, rd2
 );
 	reg [31:0] registers[31:0];
-	reg [31:0] hi;
-	reg [31:0] lo;
-    reg [31:0] aux;
-	wire [31:0] test;
-
-	always @(posedge clk)
-		if (we3) begin
-			case(funct)
-				6'b011001: lo <= wd3;
-				default: registers[wa3] <= wd3;
-			endcase
-		end
+	reg [63:0] hilo;
+    reg [31:0] aux;	
 
 	always @*
 	begin
         case(funct)
-            6'b010000: aux <= hi;
-            6'b010010: aux <= lo;
+            6'b010000: aux <= hilo[63:32];
+            6'b010010: aux <= hilo[31:0];
             default: aux <= (ra1 != 0) ? registers[ra1] : 0;
         endcase
 	end
@@ -112,7 +102,13 @@ module RegisterFile(
 	assign rd1 = aux;
 	assign rd2 = (ra2 != 0) ? registers[ra2] : 0;
 	
-	assign test = registers[31];
+	always @(posedge clk)
+		if (we3) begin
+			case(funct)
+				6'b011001: hilo <= rd1 * rd2;
+				default: registers[wa3] <= wd3;
+			endcase
+		end
 endmodule
 
 module Adder(
