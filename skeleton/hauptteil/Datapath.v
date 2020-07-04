@@ -106,6 +106,8 @@ module RegisterFile(
 		if (we3) begin
 			case(funct)
 				6'b011001: hilo <= rd1 * rd2;
+				6'b011011: begin hilo[31:0] <= rd1 / rd2; hilo[63:32] <= rd1 % rd2; end
+				// TODO FIXME use DivisionModule from warm-up excercise
 				default: registers[wa3] <= wd3;
 			endcase
 		end
