@@ -25,7 +25,7 @@ module Datapath(
 	// Execute:
 	// (a) Wähle Operanden aus
 	SignExtension se(instr[15:0], signimm);
-	assign srcbimm = alusrcbimm ? signimm : srcb;
+	assign srcbimm = alusrcbimm ? (((instr[31:26]==6'b001001) | (instr[31:26]==6'b001101))  ? instr[15:0] : signimm) : srcb;
 	// (b) Führe Berechnung in der ALU durch
 	ArithmeticLogicUnit alu(srca, srcbimm, alucontrol, aluout, zero);
 	// (c) Wähle richtiges Ergebnis aus
@@ -160,7 +160,7 @@ module ArithmeticLogicUnit(
         3'b111:
           ALU_result = a & b;
 		3'b100:
-		  ALU_result = a | b[15:0];			// ORI
+		  ALU_result = a * b;
       endcase
       
       if (ALU_result == 0)

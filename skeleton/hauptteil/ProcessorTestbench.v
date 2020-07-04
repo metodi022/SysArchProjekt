@@ -31,7 +31,20 @@ module ProcessorTestbench();
 //			$readmemh("TestProgramme/Multiplikation.dat", proc.imem.INSTRROM, 0, 4); //Benötigt: Aufgabe 1.6
 //			$readmemh("TestProgramme/Multiplikation.expected", expectedRegContent);
 
-			// Unsere TestPorgramme
+			// Unsere Testprogramme
+            
+            $readmemh("TestProgramme/mips1.dat", proc.imem.INSTRROM, 0, 1);
+            //$readmemh("TestProgramme/MULTU-MFHI-big.expected", expectedRegContent);
+            /*
+            $readmemh("MULTU-MFLO-big.dat", proc.imem.INSTRROM, 0, 3);
+            $readmemh("MULTU-MFLO-big.expected", proc.imem.INSTRROM, 0, 3);
+            $readmemh("MULTU-MFHI-small.expected", proc.imem.INSTRROM, 0, 3);
+            $readmemh("MULTU-MFLO-small.dat", proc.imem.INSTRROM, 0, 3);
+            
+            $readmemh("MULTU-MFHI-small.dat", proc.imem.INSTRROM, 0, 3);
+            $readmemh("MULTU-MFLO-small.expected", proc.imem.INSTRROM, 0, 3);
+            */
+            
 //			$readmemh("TestProgramme/Konstanten2.dat", proc.imem.INSTRROM, 0, 3); //Benötigt: Aufgabe 1.4
 //			$readmemh("TestProgramme/Konstanten2.expected", expectedRegContent);			
 //			$readmemh("TestProgramme/Konstanten3.dat", proc.imem.INSTRROM, 0, 4); //Benötigt: Aufgabe 1.4
@@ -54,9 +67,9 @@ module ProcessorTestbench();
 //			$readmemh("TestProgramme/JAL2.expected", expectedRegContent);
 //			$readmemh("TestProgramme/JR1.dat", proc.imem.INSTRROM, 0, 4); //Benötigt: Aufgabe 1.7
 //			$readmemh("TestProgramme/JR1.expected", expectedRegContent);
-			$readmemh("TestProgramme/Multu1.dat", proc.imem.INSTRROM, 0, 6); //Benötigt: Aufgabe 1.6
-			$readmemh("TestProgramme/Multu1.expected", expectedRegContent);
-// TODO add test path (asm, dat, expected)
+//      	$readmemh("TestProgramme/Multu1.dat", proc.imem.INSTRROM, 0, 6); //Benötigt: Aufgabe 1.6
+//      	$readmemh("TestProgramme/Multu1.expected", expectedRegContent);
+//          TODO add test path (asm, dat, expected)
 
 			// Generiere reset-Eingabe
 			reset <= 1;
