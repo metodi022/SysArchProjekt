@@ -35,7 +35,7 @@ module Decoder(
 						6'b011001: alucontrol = 3'b100;// MULTU
 						6'b010000: alucontrol = 3'b101;// Move high;
 						6'b010010: alucontrol = 3'b101;// Move Low;
-						6'b001000: alucontrol = 3'b101;// FIXME// JR // doesn't matter, does it? // I think it does, I made it to addition
+						6'b001000: begin dojump = 1; alucontrol = 3'b101; end// FIXME// JR // doesn't matter, does it? // I think it does, I made it to addition
 						default:   alucontrol = 3'b010;// TODO // BGTZ
 					endcase
 				end
