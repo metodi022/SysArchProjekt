@@ -29,3 +29,4 @@
 - 2020-06-24: Implementierung Tests zu Verzweigungen
 - 2020-06-26: Implementierung Multiplikation
 - 2020-07-01: Implementierung von JAL
+- 2020-07-04: Implementierung Test zu Multu
