@@ -58,7 +58,7 @@ module ProgramCounter(
 	// Berechne mögliches (PC-relatives) Sprungziel
 	Adder pcbranch(.a(incpc), .b({branchoffset[29:0], 2'b00}), .cin(1'b0), .y(branchpc));
 	// Wähle den nächsten Wert des Befehlszählers aus
-	assign nextpc = (funct == 6'b001000) ? aluout :											// JR
+	assign nextpc = ((funct == 6'b001000) && (dojump)) ? aluout :											// JR
 					dojump   ? {incpc[31:28], jumptarget, 2'b00} :
 					dobranch ? branchpc :
 							   incpc;
