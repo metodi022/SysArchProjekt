@@ -37,6 +37,8 @@ module Datapath(
 	// Write-Back: Stelle Operanden bereit und schreibe das jeweilige Resultat zurück
 	RegisterFile gpr(clk, regwrite, instr[25:21], instr[20:16],
 				   destreg, result, instr[5:0], srca, srcb);
+	
+	
 endmodule
 
 module ProgramCounter(
@@ -88,10 +90,38 @@ module RegisterFile(
 );
 	reg [31:0] registers[31:0];
 	reg [63:0] hilo;
-    reg [31:0] aux;	
+    reg [31:0] aux;
+	reg [7:0] count;
+	
+	wire start;
+	wire [31:0] q;
+	wire [31:0] r;
+	wire [31:0] in1;
+	wire [31:0] in2;
+	
+	Division divu(.start(start), .clock(clk), .a(in1), .b(in2), .q(q), .r(r));
+	
+	always @(posedge clk)
+		begin
+		if (we3) begin
+			case(funct)
+				6'b011001: hilo <= rd1 * rd2;
+				6'b011011: count <= 7'b0100000;
+				default: registers[wa3] <= wd3;
+			endcase
+		end
+		if (count > 0)
+			count--;
+		end
+	
+	always @(negedge count)
+		begin
+		hilo[31:0] <= q;
+		hilo[63:32] <= r;
+		end
 
 	always @*
-	begin
+	begin		
         case(funct)
             6'b010000: aux <= hilo[63:32];
             6'b010010: aux <= hilo[31:0];
@@ -101,16 +131,10 @@ module RegisterFile(
 	
 	assign rd1 = aux;
 	assign rd2 = (ra2 != 0) ? registers[ra2] : 0;
+	assign start = (funct == 6'b011011);
+	assign in1 = (funct == 6'b011011) ? rd1 : in1;
+	assign in2 = (funct == 6'b011011) ? rd2 : in2;
 	
-	always @(posedge clk)
-		if (we3) begin
-			case(funct)
-				6'b011001: hilo <= rd1 * rd2;
-				6'b011011: begin hilo[31:0] <= rd1 / rd2; hilo[63:32] <= rd1 % rd2; end
-				// TODO FIXME use DivisionModule from warm-up excercise
-				default: registers[wa3] <= wd3;
-			endcase
-		end
 endmodule
 
 module Adder(
