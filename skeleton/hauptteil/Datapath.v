@@ -37,6 +37,8 @@ module Datapath(
 	// Write-Back: Stelle Operanden bereit und schreibe das jeweilige Resultat zurück
 	RegisterFile gpr(clk, regwrite, instr[25:21], instr[20:16],
 				   destreg, result, instr[5:0], srca, srcb);
+	
+	
 endmodule
 
 module ProgramCounter(
@@ -100,17 +102,22 @@ module RegisterFile(
 	Division divu(.start(start), .clock(clk), .a(in1), .b(in2), .q(q), .r(r));
 	
 	always @(posedge clk)
-		
+		begin
 		if (we3) begin
 			case(funct)
 				6'b011001: hilo <= rd1 * rd2;
-				6'b011011:
-					begin
-						hilo[31:0] <= q;
-						hilo[63:32] <= r;
-					end
+				6'b011011: count <= 7'b0100000;
 				default: registers[wa3] <= wd3;
 			endcase
+		end
+		if (count > 0)
+			count--;
+		end
+	
+	always @(negedge count)
+		begin
+		hilo[31:0] <= q;
+		hilo[63:32] <= r;
 		end
 
 	always @*
