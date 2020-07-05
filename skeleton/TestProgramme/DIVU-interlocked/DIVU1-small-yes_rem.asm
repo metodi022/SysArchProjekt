@@ -1,0 +1,8 @@
+lui $1 0x0000
+lui $2 0x0000	# divident
+lui $3 0x0000	# dividor
+addiu $2 $1 10
+addiu $3 $1 3
+divu $2 $3
+mfhi $2		# remainder should be 1
+mflo $3		# quotient shuold be 3

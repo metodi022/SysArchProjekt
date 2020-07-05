@@ -19,7 +19,8 @@
 - 2020-06-22: Implementierung von ArithmeticLogicModul.v und Realisieren, dass die ALU bereits in Datapath.v fertig war
 - 2020-06-22: Versuch, BLTZ zu implementieren (in getrenntem Ordner, um Push-Konflikte zu vermeiden)
 - 2020-07-01: Implementierung von JAL und JR
-- 2020-07-04: Implementierung von Testbenches für MULTU, LO, HI und ALUTestbench4 und DivisionTestbench6
+- 2020-07-04: Implementierung von Testprogrammen für MULTU, LO, HI und ALUTestbench4 und DivisionTestbench6
+- 2020-07-05: Implementierung von DIVU-Testprogrammen
 
 
 2577568 [Angelika]:
